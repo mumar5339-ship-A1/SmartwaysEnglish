@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+}
+
+:root {
+  --brand-50: #eef7ff;
+  --brand-100: #d9edff;
+  --brand-200: #bce0ff;
+  --brand-300: #8ecdff;
+  --brand-400: #59b0ff;
+  --brand-500: #2f8eff;
+  --brand-600: #1670f4;
+  --brand-700: #0d59d8;
+  --brand-800: #114aaf;
+  --brand-900: #13418a;
+}
+
+@layer base {
+  * {
+    border-color: rgb(229 231 235);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #f6f8fb;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: rgba(47, 142, 255, 0.25);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease both;
+  }
+
+  .animate-pop {
+    animation: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(47, 142, 255, 0.3) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(47, 142, 255, 0.3);
+    border-radius: 9999px;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
