@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
-const OPENROUTER_MODEL = "openrouter/auto";
+const OPENROUTER_MODEL = "meta-llama/llama-3.3-70b-instruct:free";
 
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
