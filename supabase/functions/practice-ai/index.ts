@@ -8,6 +8,13 @@ const corsHeaders = {
 
 const GROQ_MODEL = "llama-3.3-70b-versatile";
 
+function jsonResponse(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
+
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 200, headers: corsHeaders });
@@ -17,10 +24,7 @@ Deno.serve(async (req: Request) => {
     const { words } = await req.json();
 
     if (!words || !Array.isArray(words) || words.length === 0) {
-      return new Response(JSON.stringify({ error: "Words array is required" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return jsonResponse({ error: "Words array is required" }, 400);
     }
 
     const wordList = words
@@ -41,11 +45,16 @@ Return ONLY a valid JSON array with this exact format, no other text:
   }
 ]`;
 
+    const groqKey = Deno.env.get("GROQ_API_KEY");
+    if (!groqKey) {
+      return jsonResponse({ error: "GROQ_API_KEY is not configured" }, 500);
+    }
+
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${Deno.env.get("GROQ_API_KEY")}`,
+        "Authorization": `Bearer ${groqKey}`,
       },
       body: JSON.stringify({
         model: GROQ_MODEL,
@@ -57,35 +66,39 @@ Return ONLY a valid JSON array with this exact format, no other text:
       }),
     });
 
+    const rawBody = await response.text();
+
     if (!response.ok) {
-      const errText = await response.text();
-      return new Response(JSON.stringify({ error: `Groq API error: ${response.status}`, details: errText }), {
-        status: 502,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return jsonResponse({ error: `Groq API error: ${response.status}`, details: rawBody }, 502);
     }
 
-    const data = await response.json();
+    let data: { choices?: Array<{ message?: { content?: string } }> };
+    try {
+      data = JSON.parse(rawBody);
+    } catch {
+      return jsonResponse({ error: "Groq returned a non-JSON response", raw: rawBody.slice(0, 500) }, 502);
+    }
+
     const content = data.choices?.[0]?.message?.content;
 
-    let quiz;
+    if (typeof content !== "string" || content.trim().length === 0) {
+      return jsonResponse({ error: "Groq response missing message content", responseKeys: Object.keys(data) }, 502);
+    }
+
+    let quiz: unknown;
     try {
       const jsonMatch = content.match(/\[[\s\S]*\]/);
       quiz = JSON.parse(jsonMatch ? jsonMatch[0] : content);
     } catch {
-      return new Response(JSON.stringify({ error: "Failed to parse quiz from AI response", raw: content }), {
-        status: 502,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return jsonResponse({ error: "Failed to parse quiz from AI response", raw: content.slice(0, 500) }, 502);
     }
 
-    return new Response(JSON.stringify({ quiz }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    if (!Array.isArray(quiz)) {
+      return jsonResponse({ error: "Parsed quiz is not an array", raw: content.slice(0, 500) }, 502);
+    }
+
+    return jsonResponse({ quiz });
   } catch (err) {
-    return new Response(JSON.stringify({ error: "Internal server error", details: String(err) }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return jsonResponse({ error: "Internal server error", details: String(err) }, 500);
   }
 });
