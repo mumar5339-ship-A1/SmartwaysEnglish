@@ -63,7 +63,7 @@ export function Quiz({ words, open, onClose, onQuizCompleted }: QuizProps) {
       }
       const data = await res.json();
       if (!data?.questions || !Array.isArray(data.questions) || data.questions.length === 0) {
-        throw new Error('The AI did not return any questions. Please try again.');
+        throw new Error(data?.error ?? 'The AI did not return any questions. Please try again.');
       }
       setQuestions(data.questions);
       setAnswers(new Array(data.questions.length).fill(''));
@@ -90,7 +90,7 @@ export function Quiz({ words, open, onClose, onQuizCompleted }: QuizProps) {
       }
       const data = await res.json();
       if (!data?.evaluations || !Array.isArray(data.evaluations)) {
-        throw new Error('The AI did not return feedback. Please try again.');
+        throw new Error(data?.error ?? 'The AI did not return feedback. Please try again.');
       }
       setEvaluations(data.evaluations);
       setScore(data.score ?? data.evaluations.filter((e: Evaluation) => e.correct).length);
