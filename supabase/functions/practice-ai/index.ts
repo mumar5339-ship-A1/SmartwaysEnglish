@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
-const OPENROUTER_MODEL = "google/gemma-4-31B-it:free";
+const GROQ_MODEL = "llama-3.3-70b-versatile";
 
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
@@ -41,14 +41,14 @@ Return ONLY a valid JSON array with this exact format, no other text:
   }
 ]`;
 
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${Deno.env.get("OPENROUTER_API_KEY")}`,
+        "Authorization": `Bearer ${Deno.env.get("GROQ_API_KEY")}`,
       },
       body: JSON.stringify({
-        model: OPENROUTER_MODEL,
+        model: GROQ_MODEL,
         messages: [
           { role: "system", content: "You are a helpful vocabulary tutor that creates practice quizzes. Always respond with valid JSON only." },
           { role: "user", content: prompt },
@@ -59,7 +59,7 @@ Return ONLY a valid JSON array with this exact format, no other text:
 
     if (!response.ok) {
       const errText = await response.text();
-      return new Response(JSON.stringify({ error: `OpenRouter API error: ${response.status}`, details: errText }), {
+      return new Response(JSON.stringify({ error: `Groq API error: ${response.status}`, details: errText }), {
         status: 502,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
