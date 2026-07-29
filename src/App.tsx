@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Sparkles, BookOpen, Heart } from 'lucide-react';
+import { HeroIllustration } from '@/components/HeroIllustration';
 import { supabase } from '@/lib/supabase';
 import type { Word, QuizResult } from '@/types';
 import { Header } from '@/components/Header';
@@ -86,10 +87,28 @@ export default function App() {
       <Header onPractice={openQuiz} />
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-slate-200/70">
+      <section className="relative overflow-hidden border-b border-slate-200/70 bg-gradient-to-br from-brand-50/60 via-white to-accent-50/40">
         <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-200/40 blur-3xl" />
         <div className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-accent-200/30 blur-3xl" />
-        <div className="relative mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-14">
+
+        {/* Subtle wave divider at bottom */}
+        <svg
+          className="pointer-events-none absolute bottom-0 left-0 w-full"
+          viewBox="0 0 1200 60"
+          fill="none"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M0 30 C 200 55, 400 5, 600 30 S 1000 55, 1200 30 L 1200 60 L 0 60 Z"
+            fill="currentColor"
+            className="text-slate-50/50"
+          />
+        </svg>
+
+        <HeroIllustration />
+
+        <div className="relative mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-20">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-600 text-brand-700">
               <Sparkles className="h-3 w-3" />

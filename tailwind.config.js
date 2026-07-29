@@ -50,12 +50,22 @@ export default {
         shimmer: {
           '100%': { transform: 'translateX(100%)' },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-14px)' },
+        },
+        floatSlow: {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '50%': { transform: 'translateY(-18px) rotate(2deg)' },
+        },
       },
       animation: {
         'fade-up': 'fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both',
         'fade-in': 'fadeIn 0.4s ease both',
         pop: 'pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both',
         shimmer: 'shimmer 1.5s infinite',
+        float: 'float 6s ease-in-out infinite',
+        'float-slow': 'floatSlow 9s ease-in-out infinite',
       },
     },
   },
