@@ -98,7 +98,7 @@ async function handleGenerate(words: WordInput[]): Promise<Response> {
     "You are a helpful vocabulary tutor that creates practice quizzes. " +
     "Always respond with valid JSON only — no markdown, no explanation, no code fences.";
 
-  const userPrompt = `Based on these vocabulary words and their meanings, create a 3-question practice quiz. Mix between "fill_blank" (fill in the blank) and "sentence_correction" (fix the sentence) types.
+  const userPrompt = `Based on these vocabulary words and their meanings, create a 10-question practice quiz. Mix roughly evenly between "fill_blank" (fill in the blank) and "sentence_correction" (fix the sentence) types — aim for about 5 of each. Use a different word from the list for each question, drawing from as many of the words as possible.
 
 Words:
 ${wordList}

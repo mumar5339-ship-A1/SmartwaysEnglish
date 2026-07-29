@@ -70,7 +70,7 @@ export function ProgressTracker({
           icon={<Brain className="h-5 w-5 text-brand-600" />}
           label="Avg. Score"
           value={avgScore}
-          suffix="/3"
+          suffix="/10"
           accent="bg-brand-50"
           delay="120ms"
         />

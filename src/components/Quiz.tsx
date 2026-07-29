@@ -152,7 +152,7 @@ export function Quiz({ words, open, onClose, onQuizCompleted }: QuizProps) {
             <IdlePhase words={words} onStart={generateQuiz} />
           )}
 
-          {phase === 'generating' && <LoadingPhase label="The AI is writing 3 questions from your words…" />}
+          {phase === 'generating' && <LoadingPhase label="The AI is writing 10 questions from your words…" />}
 
           {phase === 'evaluating' && <LoadingPhase label="The AI is reading your answers and preparing feedback…" />}
 
@@ -252,7 +252,7 @@ function IdlePhase({ words, onStart }: { words: Word[]; onStart: () => void }) {
       </div>
       <h3 className="font-display text-xl font-700 text-slate-900">Ready to practice?</h3>
       <p className="mt-2 max-w-sm text-sm leading-relaxed text-slate-500">
-        The AI will create a short 3-question quiz — fill-in-the-blank and sentence-correction — using your{' '}
+        The AI will create a 10-question quiz — fill-in-the-blank and sentence-correction — using your{' '}
         <span className="font-600 text-brand-600">{words.length} saved {words.length === 1 ? 'word' : 'words'}</span>.
         Answer each one, then get instant feedback.
       </p>

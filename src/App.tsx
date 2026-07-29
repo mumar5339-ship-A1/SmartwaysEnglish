@@ -75,7 +75,10 @@ export default function App() {
 
   const avgScore = useMemo(() => {
     if (quizzes.length === 0) return 0;
-    const sum = quizzes.reduce((acc, q) => acc + q.score, 0);
+    const sum = quizzes.reduce(
+      (acc, q) => acc + (q.total > 0 ? (q.score / q.total) * 10 : 0),
+      0,
+    );
     return Math.round((sum / quizzes.length) * 10) / 10;
   }, [quizzes]);
 
