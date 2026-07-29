@@ -60,25 +60,25 @@ export function ProgressTracker({
           delay="0ms"
         />
         <StatCard
-          icon={<CheckCircle2 className="h-5 w-5 text-emerald-600" />}
+          icon={<CheckCircle2 className="h-5 w-5 text-accent-600" />}
           label="Quizzes Completed"
           value={quizzesCompleted}
-          accent="bg-emerald-50"
+          accent="bg-accent-50"
           delay="60ms"
         />
         <StatCard
-          icon={<Brain className="h-5 w-5 text-amber-600" />}
+          icon={<Brain className="h-5 w-5 text-brand-600" />}
           label="Avg. Score"
           value={avgScore}
           suffix="/3"
-          accent="bg-amber-50"
+          accent="bg-brand-50"
           delay="120ms"
         />
         <StatCard
-          icon={<TrendingUp className="h-5 w-5 text-violet-600" />}
+          icon={<TrendingUp className="h-5 w-5 text-accent-600" />}
           label="Practice Streak"
           value={quizzesCompleted}
-          accent="bg-violet-50"
+          accent="bg-accent-50"
           delay="180ms"
         />
       </div>

@@ -10,16 +10,27 @@
 }
 
 :root {
-  --brand-50: #eef7ff;
-  --brand-100: #d9edff;
-  --brand-200: #bce0ff;
-  --brand-300: #8ecdff;
-  --brand-400: #59b0ff;
-  --brand-500: #2f8eff;
-  --brand-600: #1670f4;
-  --brand-700: #0d59d8;
-  --brand-800: #114aaf;
-  --brand-900: #13418a;
+  --brand-50: #ecfdf5;
+  --brand-100: #d1fae5;
+  --brand-200: #a7f3d0;
+  --brand-300: #6ee7b7;
+  --brand-400: #34d399;
+  --brand-500: #3EB489;
+  --brand-600: #16a373;
+  --brand-700: #0f8359;
+  --brand-800: #116549;
+  --brand-900: #0c523b;
+
+  --accent-50: #eef7ff;
+  --accent-100: #d9edff;
+  --accent-200: #bce0ff;
+  --accent-300: #8ecdff;
+  --accent-400: #59b0ff;
+  --accent-500: #2f8eff;
+  --accent-600: #1670f4;
+  --accent-700: #0d59d8;
+  --accent-800: #114aaf;
+  --accent-900: #13418a;
 }
 
 @layer base {
@@ -29,13 +40,13 @@
 
   body {
     font-family: var(--font-sans);
-    background-color: #f6f8fb;
+    background-color: #f2fbf7;
     color: #0f172a;
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background-color: rgba(47, 142, 255, 0.25);
+    background-color: rgba(62, 180, 137, 0.25);
   }
 }
 
@@ -69,7 +80,7 @@
 
   .scrollbar-thin {
     scrollbar-width: thin;
-    scrollbar-color: rgba(47, 142, 255, 0.3) transparent;
+    scrollbar-color: rgba(62, 180, 137, 0.3) transparent;
   }
 
   .scrollbar-thin::-webkit-scrollbar {
@@ -78,7 +89,7 @@
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background-color: rgba(47, 142, 255, 0.3);
+    background-color: rgba(62, 180, 137, 0.3);
     border-radius: 9999px;
   }
 }

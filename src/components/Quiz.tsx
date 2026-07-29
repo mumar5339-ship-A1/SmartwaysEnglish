@@ -114,9 +114,9 @@ export function Quiz({ words, open, onClose, onQuizCompleted }: QuizProps) {
         aria-modal="true"
       >
         {/* Header */}
-        <div className="flex shrink-0 items-center justify-between border-b border-slate-100 bg-gradient-to-br from-brand-50 to-white px-5 py-4 sm:px-6">
+        <div className="flex shrink-0 items-center justify-between border-b border-slate-100 bg-gradient-to-br from-brand-50 to-accent-50 px-5 py-4 sm:px-6">
           <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-lg shadow-brand-500/25">
+            <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-600 text-white shadow-lg shadow-brand-500/25">
               <Sparkles className="h-5 w-5" />
             </div>
             <div>
@@ -196,7 +196,7 @@ export function Quiz({ words, open, onClose, onQuizCompleted }: QuizProps) {
                   <button
                     onClick={() => setCurrent((c) => Math.min(questions.length - 1, c + 1))}
                     disabled={!answers[current].trim()}
-                    className="group flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-600 text-white transition-all hover:bg-slate-800 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-30"
+                    className="group flex items-center gap-2 rounded-xl bg-accent-600 px-5 py-2.5 text-sm font-600 text-white transition-all hover:bg-accent-700 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-30"
                   >
                     Next
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -205,7 +205,7 @@ export function Quiz({ words, open, onClose, onQuizCompleted }: QuizProps) {
                   <button
                     onClick={submitQuiz}
                     disabled={!canSubmit}
-                    className="flex items-center gap-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 px-5 py-2.5 text-sm font-600 text-white shadow-lg shadow-emerald-500/25 transition-all hover:shadow-xl active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-40"
+                    className="flex items-center gap-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 px-5 py-2.5 text-sm font-600 text-white shadow-lg shadow-brand-500/25 transition-all hover:shadow-xl active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     <Wand2 className="h-4 w-4" />
                     Get AI Feedback
@@ -247,7 +247,7 @@ function IdlePhase({ words, onStart }: { words: Word[]; onStart: () => void }) {
 
   return (
     <div className="flex flex-col items-center justify-center py-10 text-center">
-      <div className="mb-5 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-xl shadow-brand-500/30">
+      <div className="mb-5 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-600 text-white shadow-xl shadow-brand-500/30">
         <Wand2 className="h-8 w-8" />
       </div>
       <h3 className="font-display text-xl font-700 text-slate-900">Ready to practice?</h3>
@@ -267,7 +267,7 @@ function IdlePhase({ words, onStart }: { words: Word[]; onStart: () => void }) {
           </span>
         ))}
         {words.length > 6 && (
-          <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-600 text-brand-600">
+          <span className="rounded-full bg-accent-50 px-3 py-1 text-xs font-600 text-accent-600">
             +{words.length - 6} more
           </span>
         )}
@@ -275,7 +275,7 @@ function IdlePhase({ words, onStart }: { words: Word[]; onStart: () => void }) {
 
       <button
         onClick={onStart}
-        className="mt-7 flex items-center gap-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 px-6 py-3 text-sm font-600 text-white shadow-lg shadow-brand-500/25 transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]"
+        className="mt-7 flex items-center gap-2 rounded-xl bg-gradient-to-br from-brand-500 to-accent-600 px-6 py-3 text-sm font-600 text-white shadow-lg shadow-brand-500/25 transition-all hover:shadow-xl hover:shadow-brand-500/30 active:scale-[0.98]"
       >
         <Sparkles className="h-4 w-4" />
         Start Quiz
@@ -288,7 +288,7 @@ function LoadingPhase({ label }: { label: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
       <div className="relative mb-5">
-        <div className="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-xl shadow-brand-500/30">
+        <div className="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-600 text-white shadow-xl shadow-brand-500/30">
           <Sparkles className="h-8 w-8 animate-pulse" />
         </div>
       </div>
@@ -323,7 +323,7 @@ function QuestionCard({
       <div className="mb-3 flex items-center gap-2">
         <span
           className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-600 ${
-            isFill ? 'bg-brand-50 text-brand-700' : 'bg-violet-50 text-violet-700'
+            isFill ? 'bg-brand-50 text-brand-700' : 'bg-accent-50 text-accent-700'
           }`}
         >
           {isFill ? <PenLine className="h-3 w-3" /> : <Wand2 className="h-3 w-3" />}
@@ -369,8 +369,8 @@ function ResultsPhase({
       <div
         className={`animate-pop rounded-2xl p-6 text-center ${
           perfect
-            ? 'bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-lg shadow-emerald-500/30'
-            : 'bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-lg shadow-brand-500/30'
+            ? 'bg-gradient-to-br from-brand-500 to-brand-600 text-white shadow-lg shadow-brand-500/30'
+            : 'bg-gradient-to-br from-accent-500 to-accent-600 text-white shadow-lg shadow-accent-500/30'
         }`}
       >
         <div className="mb-2 grid h-14 w-14 place-items-center rounded-2xl bg-white/20 backdrop-blur">
@@ -401,7 +401,7 @@ function ResultsPhase({
             >
               <div className="mb-2 flex items-start gap-2.5">
                 {correct ? (
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-500" />
                 ) : (
                   <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-rose-500" />
                 )}
@@ -410,14 +410,14 @@ function ResultsPhase({
                   <div className="mt-1.5 space-y-1 text-xs">
                     <p className="text-slate-500">
                       <span className="font-600 text-slate-600">Your answer:</span>{' '}
-                      <span className={correct ? 'text-emerald-600' : 'text-rose-600'}>
+                      <span className={correct ? 'text-brand-600' : 'text-rose-600'}>
                         {answers[i]?.trim() || '(no answer)'}
                       </span>
                     </p>
                     {!correct && (
                       <p className="text-slate-500">
                         <span className="font-600 text-slate-600">Correct answer:</span>{' '}
-                        <span className="text-emerald-600">{q.answer}</span>
+                        <span className="text-brand-600">{q.answer}</span>
                       </p>
                     )}
                   </div>
@@ -436,7 +436,7 @@ function ResultsPhase({
 
       <button
         onClick={onRetry}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-600 text-white transition-all hover:bg-slate-800 active:scale-[0.98]"
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent-600 px-4 py-3 text-sm font-600 text-white transition-all hover:bg-accent-700 active:scale-[0.98]"
       >
         <RotateCcw className="h-4 w-4" />
         Try Another Quiz

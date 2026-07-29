@@ -129,9 +129,9 @@ function EmptyState({
       </p>
       <button
         onClick={onPractice}
-        className="mt-4 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-600 text-white transition-colors hover:bg-slate-800"
+        className="mt-4 inline-flex items-center gap-2 rounded-xl bg-accent-600 px-4 py-2.5 text-sm font-600 text-white transition-colors hover:bg-accent-700"
       >
-        <Sparkles className="h-4 w-4 text-brand-300" />
+        <Sparkles className="h-4 w-4 text-accent-200" />
         Practice with AI
       </button>
     </div>

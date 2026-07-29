@@ -88,7 +88,7 @@ export default function App() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-slate-200/70">
         <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-200/40 blur-3xl" />
-        <div className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-emerald-200/30 blur-3xl" />
+        <div className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-accent-200/30 blur-3xl" />
         <div className="relative mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-14">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-600 text-brand-700">
@@ -112,9 +112,9 @@ export default function App() {
               </button>
               <a
                 href="#add-word"
-                className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-600 text-slate-700 shadow-sm transition-all hover:border-slate-300 hover:bg-slate-50 active:scale-[0.98]"
+                className="flex items-center gap-2 rounded-xl border border-accent-200 bg-white px-5 py-3 text-sm font-600 text-accent-700 shadow-sm transition-all hover:border-accent-300 hover:bg-accent-50 active:scale-[0.98]"
               >
-                <BookOpen className="h-4 w-4 text-brand-600" />
+                <BookOpen className="h-4 w-4 text-accent-600" />
                 Add a Word
               </a>
             </div>
